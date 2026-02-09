@@ -5,6 +5,9 @@ import { AuthProvider } from './context/AuthContext'
 import Home from './components/Home'
 import Login from './pages/Login'
 import Register from './pages/Register'
+import Dashboard from './pages/Dashboard'
+import MyBikes from './pages/MyBikes'
+import AddBike from './pages/AddBike'
 
 
 function App() {
@@ -15,6 +18,9 @@ function App() {
           <Route path="/" element={<Home title="MechEasy" />} />
           <Route path="/login" element={<Login />} />
           <Route path="/register" element={<Register />} />
+          <Route path="/dashboard" element={<Dashboard />} />
+          <Route path="/bikes" element={<MyBikes />} />
+          <Route path="/bikes/add" element={<AddBike />} />
         </Routes>
       </Router>
     </AuthProvider>
