@@ -32,6 +32,7 @@ app.use('/uploads', express.static(path.join(__dirname, 'uploads')));
 import authRoutes from './routes/auth.js';
 import bikeRoutes from './routes/bikes.js';
 import serviceRoutes from './routes/services.js';
+import bookingRoutes from './routes/bookings.js';
 
 // Health check route
 app.get('/api/health', (req, res) => {
@@ -46,7 +47,7 @@ app.get('/api/health', (req, res) => {
 app.use('/api/auth', authRoutes);
 app.use('/api/bikes', bikeRoutes);
 app.use('/api/services', serviceRoutes);
-// app.use('/api/bookings', bookingRoutes);
+app.use('/api/bookings', bookingRoutes);
 // app.use('/api/payments', paymentRoutes);
 // app.use('/api/admin', adminRoutes);
 
