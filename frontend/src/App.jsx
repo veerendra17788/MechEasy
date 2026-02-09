@@ -8,6 +8,7 @@ import Register from './pages/Register'
 import Dashboard from './pages/Dashboard'
 import MyBikes from './pages/MyBikes'
 import AddBike from './pages/AddBike'
+import Services from './pages/Services'
 
 
 function App() {
@@ -21,6 +22,7 @@ function App() {
           <Route path="/dashboard" element={<Dashboard />} />
           <Route path="/bikes" element={<MyBikes />} />
           <Route path="/bikes/add" element={<AddBike />} />
+          <Route path="/services" element={<Services />} />
         </Routes>
       </Router>
     </AuthProvider>
