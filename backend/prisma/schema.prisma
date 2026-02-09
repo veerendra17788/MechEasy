@@ -1,0 +1,102 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "sqlite"
+  url      = env("DATABASE_URL")
+}
+
+model User {
+  id        Int       @id @default(autoincrement())
+  name      String
+  email     String    @unique
+  phone     String    @unique
+  password  String
+  role      String    @default("user") // user, admin, mechanic
+  createdAt DateTime  @default(now())
+  updatedAt DateTime  @updatedAt
+  
+  bikes     Bike[]
+  bookings  Booking[]
+  reviews   Review[]
+}
+
+model Bike {
+  id          Int       @id @default(autoincrement())
+  userId      Int
+  brand       String
+  model       String
+  numberPlate String    @unique
+  image       String?
+  createdAt   DateTime  @default(now())
+  updatedAt   DateTime  @updatedAt
+  
+  user        User      @relation(fields: [userId], references: [id], onDelete: Cascade)
+  bookings    Booking[]
+}
+
+model Service {
+  id          Int       @id @default(autoincrement())
+  name        String
+  description String
+  price       Int       // Price in cents/paise
+  duration    Int       // Duration in minutes
+  category    String    // repair, wash, maintenance, package
+  isActive    Boolean   @default(true)
+  createdAt   DateTime  @default(now())
+  updatedAt   DateTime  @updatedAt
+  
+  bookings    Booking[]
+}
+
+model Booking {
+  id          Int       @id @default(autoincrement())
+  userId      Int
+  bikeId      Int
+  serviceId   Int
+  date        String    // Format: YYYY-MM-DD
+  timeSlot    String    // Format: HH:MM-HH:MM
+  serviceType String    // pickup, home, visit
+  address     String?
+  status      String    @default("pending") // pending, confirmed, in_progress, completed, cancelled
+  mechanicId  Int?
+  notes       String?
+  createdAt   DateTime  @default(now())
+  updatedAt   DateTime  @updatedAt
+  
+  user        User      @relation(fields: [userId], references: [id], onDelete: Cascade)
+  bike        Bike      @relation(fields: [bikeId], references: [id], onDelete: Cascade)
+  service     Service   @relation(fields: [serviceId], references: [id], onDelete: Cascade)
+  payment     Payment?
+  review      Review?
+}
+
+model Payment {
+  id            Int       @id @default(autoincrement())
+  bookingId     Int       @unique
+  amount        Int       // Amount in cents/paise
+  paymentMethod String    // cod, online, card, upi
+  paymentStatus String    @default("pending") // pending, completed, failed, refunded
+  transactionId String?
+  createdAt     DateTime  @default(now())
+  updatedAt     DateTime  @updatedAt
+  
+  booking       Booking   @relation(fields: [bookingId], references: [id], onDelete: Cascade)
+}
+
+model Review {
+  id        Int       @id @default(autoincrement())
+  bookingId Int       @unique
+  userId    Int
+  rating    Int       // 1-5
+  comment   String?
+  createdAt DateTime  @default(now())
+  updatedAt DateTime  @updatedAt
+  
+  booking   Booking   @relation(fields: [bookingId], references: [id], onDelete: Cascade)
+  user      User      @relation(fields: [userId], references: [id], onDelete: Cascade)
+}
