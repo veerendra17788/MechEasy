@@ -1,7 +1,7 @@
 .navbar {
   display: flex;
   align-items: center;
-  gap: 1rem;
+  justify-content: space-between;
   padding: 1rem 2rem;
   height: 80px;
   background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
@@ -9,6 +9,14 @@
   position: sticky;
   top: 0;
   z-index: 1000;
+}
+
+.navbar-brand {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  text-decoration: none;
+  cursor: pointer;
 }
 
 .navbar-icon {
@@ -32,7 +40,71 @@
   letter-spacing: 0.5px;
 }
 
-.title-h1{
-    height: 20px;
-    font-size: small;
+.navbar-menu {
+  display: flex;
+  align-items: center;
+  gap: 1.5rem;
+}
+
+.navbar-user {
+  color: white;
+  font-weight: 500;
+  font-size: 0.95rem;
+}
+
+.navbar-link {
+  color: white;
+  text-decoration: none;
+  font-weight: 500;
+  padding: 0.5rem 1rem;
+  border-radius: 6px;
+  transition: background-color 0.3s ease;
+}
+
+.navbar-link:hover {
+  background-color: rgba(255, 255, 255, 0.1);
+}
+
+.navbar-btn {
+  color: white;
+  background-color: rgba(255, 255, 255, 0.2);
+  text-decoration: none;
+  font-weight: 600;
+  padding: 0.5rem 1.25rem;
+  border: 2px solid white;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  font-size: 1rem;
+}
+
+.navbar-btn:hover {
+  background-color: white;
+  color: #667eea;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .navbar {
+    padding: 1rem;
+  }
+  
+  .navbar-title {
+    font-size: 1.25rem;
+  }
+  
+  .navbar-menu {
+    gap: 0.75rem;
+  }
+  
+  .navbar-user {
+    display: none;
+  }
+  
+  .navbar-link, .navbar-btn {
+    padding: 0.4rem 0.8rem;
+    font-size: 0.85rem;
+  }
 }
