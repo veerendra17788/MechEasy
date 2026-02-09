@@ -33,6 +33,8 @@ import authRoutes from './routes/auth.js';
 import bikeRoutes from './routes/bikes.js';
 import serviceRoutes from './routes/services.js';
 import bookingRoutes from './routes/bookings.js';
+import paymentRoutes from './routes/payments.js';
+import adminRoutes from './routes/admin.js';
 
 // Health check route
 app.get('/api/health', (req, res) => {
@@ -48,8 +50,8 @@ app.use('/api/auth', authRoutes);
 app.use('/api/bikes', bikeRoutes);
 app.use('/api/services', serviceRoutes);
 app.use('/api/bookings', bookingRoutes);
-// app.use('/api/payments', paymentRoutes);
-// app.use('/api/admin', adminRoutes);
+app.use('/api/payments', paymentRoutes);
+app.use('/api/admin', adminRoutes);
 
 // 404 handler
 app.use((req, res) => {

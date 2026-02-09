@@ -11,6 +11,7 @@ import AddBike from './pages/AddBike'
 import Services from './pages/Services'
 import BookService from './pages/BookService'
 import MyBookings from './pages/MyBookings'
+import AdminDashboard from './pages/AdminDashboard'
 
 
 function App() {
@@ -27,6 +28,7 @@ function App() {
           <Route path="/services" element={<Services />} />
           <Route path="/book-service" element={<BookService />} />
           <Route path="/bookings" element={<MyBookings />} />
+          <Route path="/admin/dashboard" element={<AdminDashboard />} />
         </Routes>
       </Router>
     </AuthProvider>
